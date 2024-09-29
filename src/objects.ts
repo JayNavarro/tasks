@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 import { Question, QuestionType } from "./interfaces/question";
 
 /**
@@ -33,6 +34,7 @@ export function isCorrect(question: Question, answer: string): boolean {
     return (
         answer.trim().toLowerCase() === question.expected.trim().toLowerCase()
     );
+    return false;
 }
 
 /**
@@ -51,6 +53,7 @@ export function isValid(question: Question, answer: string): boolean {
             return false;
         }
     }
+    return false;
 }
 
 /**
@@ -63,6 +66,8 @@ export function toShortForm(question: Question): string {
     let newString: string;
     newString = question.id + ": " + question.name.substring(0, 10);
     return newString;
+
+    return "";
 }
 
 /**
@@ -159,11 +164,11 @@ export function mergeQuestion(
         name: name,
         body: contentQuestion.body,
         type: contentQuestion.type,
-        options: [...contentQuestion.options], // Ensure a new copy of the options array
+        options: [...contentQuestion.options], 
         expected: contentQuestion.expected,
         points: points,
-        published: false, // Set published to false
+        published: false, 
     };
-
     return newQuestion;
 }
+
