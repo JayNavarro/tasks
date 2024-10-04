@@ -48,7 +48,7 @@ describe("Testing the object functions", () => {
     //////////////////////////////////
     // makeBlankQuestion
 
-    test("Testing the makeBlankQuestion function", () => {
+    test("(3 pts) Testing the makeBlankQuestion function", () => {
         expect(
             makeBlankQuestion(1, "Question 1", "multiple_choice_question"),
         ).toEqual(BLANK_QUESTIONS[0]);
@@ -66,7 +66,7 @@ describe("Testing the object functions", () => {
 
     ///////////////////////////////////
     // isCorrect
-    test("Testing the isCorrect function", () => {
+    test("(3 pts) Testing the isCorrect function", () => {
         expect(isCorrect(ADDITION_QUESTION, "4")).toEqual(true);
         expect(isCorrect(ADDITION_QUESTION, "2")).toEqual(false);
         expect(isCorrect(ADDITION_QUESTION, " 4\n")).toEqual(true);
@@ -85,7 +85,7 @@ describe("Testing the object functions", () => {
 
     ///////////////////////////////////
     // isValid
-    test("Testing the isValid function", () => {
+    test("(3 pts) Testing the isValid function", () => {
         expect(isValid(ADDITION_QUESTION, "4")).toEqual(true);
         expect(isValid(ADDITION_QUESTION, "2")).toEqual(true);
         expect(isValid(ADDITION_QUESTION, " 4\n")).toEqual(true);
@@ -108,7 +108,7 @@ describe("Testing the object functions", () => {
 
     ///////////////////////////////////
     // toShortForm
-    test("Testing the toShortForm function", () => {
+    test("(3 pts) Testing the toShortForm function", () => {
         expect(toShortForm(ADDITION_QUESTION)).toEqual("1: Addition");
         expect(toShortForm(LETTER_QUESTION)).toEqual("2: Letters");
         expect(toShortForm(COLOR_QUESTION)).toEqual("5: Colors");
@@ -118,7 +118,7 @@ describe("Testing the object functions", () => {
 
     ///////////////////////////////////
     // toMarkdown
-    test("Testing the toMarkdown function", () => {
+    test("(3 pts) Testing the toMarkdown function", () => {
         expect(toMarkdown(ADDITION_QUESTION)).toEqual(`# Addition
 What is 2+2?`);
         expect(toMarkdown(LETTER_QUESTION)).toEqual(`# Letters
@@ -145,7 +145,7 @@ What shape can you make with one line?
 
     ///////////////////////////////////
     // renameQuestion
-    test("Testing the renameQuestion function", () => {
+    test("(3 pts) Testing the renameQuestion function", () => {
         expect(
             renameQuestion(ADDITION_QUESTION, "My Addition Question"),
         ).toEqual({
@@ -174,7 +174,7 @@ What shape can you make with one line?
 
     ///////////////////////////////////
     // publishQuestion
-    test("Testing the publishQuestion function", () => {
+    test("(3 pts) Testing the publishQuestion function", () => {
         expect(publishQuestion(ADDITION_QUESTION)).toEqual({
             id: 1,
             name: "Addition",
@@ -209,7 +209,7 @@ What shape can you make with one line?
 
     ///////////////////////////////////
     // duplicateQuestion
-    test("Testing the duplicateQuestion function", () => {
+    test("(3 pts) Testing the duplicateQuestion function", () => {
         expect(duplicateQuestion(9, ADDITION_QUESTION)).toEqual({
             id: 9,
             name: "Copy of Addition",
@@ -234,7 +234,7 @@ What shape can you make with one line?
 
     ///////////////////////////////////
     // addOption
-    test("Testing the addOption function", () => {
+    test("(3 pts) Testing the addOption function", () => {
         expect(addOption(SHAPE_QUESTION, "heptagon")).toEqual({
             id: 9,
             name: "Shapes",
@@ -259,7 +259,7 @@ What shape can you make with one line?
 
     ///////////////////////////////////
     // mergeQuestion
-    test("Testing the mergeQuestion function", () => {
+    test("(3 pts) Testing the mergeQuestion function", () => {
         expect(
             mergeQuestion(
                 192,

@@ -1,4 +1,3 @@
-/* eslint-disable no-unreachable */
 import { Question, QuestionType } from "./interfaces/question";
 
 /**
@@ -34,7 +33,6 @@ export function isCorrect(question: Question, answer: string): boolean {
     return (
         answer.trim().toLowerCase() === question.expected.trim().toLowerCase()
     );
-    return false;
 }
 
 /**
@@ -53,7 +51,6 @@ export function isValid(question: Question, answer: string): boolean {
             return false;
         }
     }
-    return false;
 }
 
 /**
@@ -66,8 +63,6 @@ export function toShortForm(question: Question): string {
     let newString: string;
     newString = question.id + ": " + question.name.substring(0, 10);
     return newString;
-
-    return "";
 }
 
 /**
@@ -126,8 +121,17 @@ export function publishQuestion(question: Question): Question {
  * over as "Copy of ORIGINAL NAME" (e.g., so "Question 1" would become "Copy of Question 1").
  * The `published` field should be reset to false.
  */
-export function duplicateQuestion(id: number, oldQuestion: Question): Question { 
-    return { id: id, name: `Copy of ${oldQuestion.name}`, body: oldQuestion.body, type: oldQuestion.type, options: oldQuestion.options, expected: oldQuestion.expected, points: oldQuestion.points, published: false, }; 
+export function duplicateQuestion(id: number, oldQuestion: Question): Question {
+    return {
+        id: id,
+        name: "Copy of "+ oldQuestion.name,
+        body: oldQuestion.body,
+        type: oldQuestion.type,
+        options: oldQuestion.options,
+        expected: oldQuestion.expected,
+        points: oldQuestion.points,
+        published: false,
+    };
 }
 
 /**
@@ -164,11 +168,11 @@ export function mergeQuestion(
         name: name,
         body: contentQuestion.body,
         type: contentQuestion.type,
-        options: [...contentQuestion.options], 
+        options: [...contentQuestion.options],
         expected: contentQuestion.expected,
         points: points,
-        published: false, 
+        published: false,
     };
     return newQuestion;
 }
-
+``
