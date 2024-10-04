@@ -83,18 +83,18 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    let newString = `# ${question.name}\n${question.body || ""}`;
+    let result = "# " + question.name + "\n" + question.body;
 
     if (
         question.type === "multiple_choice_question" &&
         Array.isArray(question.options)
     ) {
-        newString += "\n";
-        question.options.forEach((option) => {
-            newString += `- ${option}\n`;
-        });
+        for (let option of question.options) {
+            result += "\n- " + option;
+        }
     }
-    return newString.trim();
+
+    return result;
 }
 
 /**
@@ -121,8 +121,17 @@ export function publishQuestion(question: Question): Question {
  * over as "Copy of ORIGINAL NAME" (e.g., so "Question 1" would become "Copy of Question 1").
  * The `published` field should be reset to false.
  */
-export function duplicateQuestion(id: number, oldQuestion: Question): Question { 
-    return { id: id, name: `Copy of ${oldQuestion.name}`, body: oldQuestion.body, type: oldQuestion.type, options: oldQuestion.options, expected: oldQuestion.expected, points: oldQuestion.points, published: false, }; 
+export function duplicateQuestion(id: number, oldQuestion: Question): Question {
+    return {
+        id: id,
+        name: "Copy of " + oldQuestion.name,
+        body: oldQuestion.body,
+        type: oldQuestion.type,
+        options: oldQuestion.options,
+        expected: oldQuestion.expected,
+        points: oldQuestion.points,
+        published: false,
+    };
 }
 
 /**
