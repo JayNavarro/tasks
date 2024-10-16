@@ -20,18 +20,15 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    let nonEmptyQuestions: Question[] = [];
-    for (let question of questions) {
-        if (
+    return questions.filter((question) => {
+        return !(
             question.body === "" &&
             question.expected === "" &&
             question.options.length === 0
-        ) {
-            nonEmptyQuestions.push(question);
-        }
-    }
-    return nonEmptyQuestions;
+        );
+    });
 }
+
 
 /***
  * Consumes an array of questions and returns the question with the given `id`. If the
