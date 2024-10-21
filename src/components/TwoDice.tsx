@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 /**
@@ -12,32 +12,32 @@ export function d6(): number {
 }
 
 export function TwoDice(): React.JSX.Element {
-    // Initialize state for both dice
+    // States for both dice
     const [leftDie, setLeftDie] = useState<number>(d6());
     const [rightDie, setRightDie] = useState<number>(d6());
 
-    // Ensure initial dice values are not the same
-    while (leftDie === rightDie) {
-        setRightDie(d6());
-    }
+    // Ensure initial values of the dice are not the same
+    useEffect(() => {
+        if (leftDie === rightDie) {
+            setRightDie(d6());
+        }
+    }, [leftDie]);
 
     // Roll left die
     const rollLeft = () => {
-        const newRoll = d6();
-        setLeftDie(newRoll);
+        setLeftDie(d6());
     };
 
     // Roll right die
     const rollRight = () => {
-        const newRoll = d6();
-        setRightDie(newRoll);
+        setRightDie(d6());
     };
 
-    // Check game status
+    // Determine the game result message
     let statusMessage = "";
     if (leftDie === rightDie) {
         if (leftDie === 1) {
-            statusMessage = "You Lose!";
+            statusMessage = "You Lose! Snake Eyes!";
         } else {
             statusMessage = "You Win!";
         }
