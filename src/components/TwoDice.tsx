@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 /**
@@ -12,48 +12,28 @@ export function d6(): number {
 }
 
 export function TwoDice(): React.JSX.Element {
-    // States for both dice
-    const [leftDie, setLeftDie] = useState<number>(d6());
-    const [rightDie, setRightDie] = useState<number>(d6());
+    const [leftDie, setLeftDie] = useState<number>(1);
+    const [rightDie, setRightDie] = useState<number>(2);
 
-    // Ensure initial values of the dice are not the same
-    useEffect(() => {
-        if (leftDie === rightDie) {
-            setRightDie(d6());
-        }
-    }, [leftDie]);
-
-    // Roll left die
     const rollLeft = () => {
         setLeftDie(d6());
     };
 
-    // Roll right die
     const rollRight = () => {
         setRightDie(d6());
     };
 
-    // Determine the game result message
-    let statusMessage = "";
-    if (leftDie === rightDie) {
-        if (leftDie === 1) {
-            statusMessage = "You Lose! Snake Eyes!";
-        } else {
-            statusMessage = "You Win!";
-        }
-    }
-
     return (
         <div>
-            <div>
-                <span data-testid="left-die">{leftDie}</span>
-                <span data-testid="right-die">{rightDie}</span>
-            </div>
+            <span data-testid="left-die">{leftDie}</span>
+            <span data-testid="right-die">{rightDie}</span>
             <div>
                 <Button onClick={rollLeft}>Roll Left</Button>
                 <Button onClick={rollRight}>Roll Right</Button>
             </div>
-            {statusMessage && <div>{statusMessage}</div>}
+            {leftDie === rightDie && (
+                <p>{leftDie === 1 ? "You lose" : "You Win"}</p>
+            )}
         </div>
     );
 }
