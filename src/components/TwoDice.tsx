@@ -12,31 +12,48 @@ export function d6(): number {
 }
 
 export function TwoDice(): React.JSX.Element {
-    const [state1, setState1] = useState<number>(2);
-    const [state2, setState2] = useState<number>(4);
+    // Initialize state for both dice
+    const [leftDie, setLeftDie] = useState<number>(d6());
+    const [rightDie, setRightDie] = useState<number>(d6());
 
-    function rollLeft(): void {
-        setState1(d6());
+    // Ensure initial dice values are not the same
+    while (leftDie === rightDie) {
+        setRightDie(d6());
     }
-    function rollRight(): void {
-        setState2(d6());
+
+    // Roll left die
+    const rollLeft = () => {
+        const newRoll = d6();
+        setLeftDie(newRoll);
+    };
+
+    // Roll right die
+    const rollRight = () => {
+        const newRoll = d6();
+        setRightDie(newRoll);
+    };
+
+    // Check game status
+    let statusMessage = "";
+    if (leftDie === rightDie) {
+        if (leftDie === 1) {
+            statusMessage = "You Lose!";
+        } else {
+            statusMessage = "You Win!";
+        }
     }
 
     return (
         <div>
-            <span data-testid="left-die">{state1} </span>
-            <span data-testid="right-die"> {state2}</span>
+            <div>
+                <span data-testid="left-die">{leftDie}</span>
+                <span data-testid="right-die">{rightDie}</span>
+            </div>
             <div>
                 <Button onClick={rollLeft}>Roll Left</Button>
                 <Button onClick={rollRight}>Roll Right</Button>
             </div>
-            <div>
-                {state1 === state2 && state1 === 1 ?
-                    <span>Lose</span>
-                : state1 === state2 ?
-                    <span>Win</span>
-                :   <span></span>}
-            </div>
+            {statusMessage && <div>{statusMessage}</div>}
         </div>
     );
 }
